@@ -1,4 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js
+
+[![Build Status][build-status-image]][build-status-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
+
+[build-status-url]: https://github.com/aginix/next-with-aginix/actions
+[build-status-image]: https://img.shields.io/github/workflow/status/aginix/next-with-aginix/Node%20CI/master
+[codecov-url]: https://codecov.io/gh/aginix/next-with-aginix
+[codecov-image]: https://img.shields.io/codecov/c/github/aginix/next-with-aginix/master.svg
+[david-dm-url]: https://david-dm.org/aginix/next-with-aginix
+[david-dm-image]: https://img.shields.io/david/aginix/next-with-aginix.svg
+[david-dm-dev-url]: https://david-dm.org/aginix/next-with-aginix?type=dev
+[david-dm-dev-image]: https://img.shields.io/david/dev/aginix/next-with-aginix.svg
+
+Aginix's boilerplate to accelerate the setup of new [Next.js](https://nextjs.org/) based web applications.
+
+You may preview the boilerplate at https://next-with-aginix.vercel.app.
 
 ## Getting Started
 
