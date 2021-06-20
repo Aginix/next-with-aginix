@@ -23,8 +23,8 @@ jobs:
       - name: Install & build
         run: |
           cd docusaurus
-          npm ci
-          npm run build
+          yarn install --frozen-lockfile
+          yarn run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
