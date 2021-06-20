@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci
+          yarn install --frozen-lockfile
 
       - name: Cache node_modules
         uses: actions/cache@v1
@@ -59,17 +59,17 @@ jobs:
       - name: Install dependencies
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
         run: |
-          npm ci
+          yarn install --frozen-lockfile
 
       - name: Lint
         run: |
-          npm run lint
+          yarn run lint
 
-      - name: Test
-        env:
-          CI: 1
-        run: |
-          npm t
+      # - name: Test
+      #   env:
+      #     CI: 1
+      #   run: |
+      #     yarn t
 
       - name: Submit coverage
         uses: codecov/codecov-action@v1
@@ -101,16 +101,16 @@ jobs:
       - name: Install dependencies
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
         run: |
-          npm ci
+          yarn install --frozen-lockfile
 
       - name: Build
         env:
           SITE_URL: http://localhost:3000
         run: |
-          npm run build
+          yarn run build
 
       - name: Run & check status code
         run: |
-          npm start &
+          yarn start &
           sleep 5
           curl http://localhost:3000 > /dev/null
