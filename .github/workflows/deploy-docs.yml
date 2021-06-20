@@ -5,7 +5,7 @@ on:
     paths:
       - docusaurus/**/*
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
