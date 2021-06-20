@@ -5,8 +5,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 module.exports = {
   title: "Aginix's Next.js",
   tagline: "Dinosaurs are cool",
-  url: "https://aginix.github.io/next-with-aginix",
-  baseUrl: "/next-with-aginix",
+  url: "https://next-with.aginix.tech/",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
