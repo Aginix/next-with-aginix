@@ -1,7 +1,7 @@
 module.exports = {
   schema: [
     {
-      [process.env.GRAPHQL_ENDPOINT]: {
+      [process.env.GRAPHQL_URL]: {
         headers: {
           // For Hasura (GraphQL Engine)
           // 'X-Hasura-Admin-Secret': process.env.AUTH_TOKEN,

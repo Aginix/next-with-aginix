@@ -1,7 +1,34 @@
 import 'styles/globals.css'
-import type { AppProps } from 'next/app'
+import Head from 'next/head';
+import App, { AppContext, AppProps } from 'next/app'
+import merge from 'deepmerge'
+import { Fragment } from 'react'
+import { ApolloProvider } from '@apollo/client'
+import { useApollo } from '../src/libs/apollo';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const apolloClient = useApollo(pageProps)
+
+  return (
+    <Fragment>
+      <Head>
+        <title>KNN Maps</title>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+      </Head>
+      <ApolloProvider client={apolloClient}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </Fragment>
+  )
 }
 export default MyApp
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext);
+
+  return merge(appProps, {
+    pageProps: {
+      GRAPHQL_URL: process.env.GRAPHQL_URL,
+    }
+  });
+}
