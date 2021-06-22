@@ -11,12 +11,10 @@ export const GRAPHQL_URL_PROP_NAME = 'GRAPHQL_URL'
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined = undefined;
 
-type Options = { uri: string }
-
-function createApolloClient({ uri }: Options) {
+function createApolloClient() {
 
   const httpLink = new HttpLink({
-    uri,
+    uri: process.env.GRAPHQL_URL,
     credentials: 'include',
     // headers: headers,
   });
@@ -38,8 +36,8 @@ function createApolloClient({ uri }: Options) {
   })
 }
 
-export function initializeApollo(initialState: any, options: Options) {
-  const _apolloClient = apolloClient ?? createApolloClient(options)
+export function initializeApollo(initialState: any = null) {
+  const _apolloClient = apolloClient ?? createApolloClient()
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // gets hydrated here
@@ -79,7 +77,6 @@ export function addApolloState(client: ApolloClient<NormalizedCacheObject>, page
 
 export function useApollo(pageProps: any) {
   const state = pageProps[APOLLO_STATE_PROP_NAME]
-  const uri = pageProps[GRAPHQL_URL_PROP_NAME]
-  const store = useMemo(() => initializeApollo(state, { uri }), [state, uri])
+  const store = useMemo(() => initializeApollo(state, {}), [state])
   return store
 }

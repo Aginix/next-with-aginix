@@ -9,16 +9,29 @@ module.exports = {
       },
     },
   ],
+  documents: ['./graph/*.graphql'],
   overwrite: true,
   generates: {
     './src/generated/graphql.tsx': {
-      documents: ['./graph/*.graphql'],
       plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
       config: {
         skipTypename: false,
         withHooks: true,
         withHOC: false,
-        withComponent: true,
+        withComponent: false,
+        namingConvention: {
+          typeNames: 'pascal-case#pascalCase',
+          transformUnderscore: true,
+        },
+      },
+    },
+    './src/generated/graphql-request.ts': {
+      plugins: ['typescript-graphql-request'],
+      config: {
+        typesPrefix: 'Operations.',
+        rawRequest: false,
+        documentMode: 'external',
+        importDocumentNodeExternallyFrom: './graphql',
         namingConvention: {
           typeNames: 'pascal-case#pascalCase',
           transformUnderscore: true,
