@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmit": true,
@@ -15,7 +16,27 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "libs": ["src/libs"],
+      "libs/*": ["src/libs/*"],
+      "components": ["src/components"],
+      "components/*": ["src/components/*"],
+      "generated": ["src/generated"],
+      "generated/*": ["src/generated/*"],
+      "public/*": ["public/*"],
+      "public": ["public"],
+      "views/*": ["src/views/*"],
+      "views": ["src/views"],
+      "layouts/*": ["src/layouts/*"],
+      "layouts": ["src/layouts"],
+      "styles": ["src/styles"],
+      "styles/*": ["src/styles/*"],
+      "theme": ["src/theme"],
+      "theme/*": ["src/theme/*"],
+      "server": ["src/server"],
+      "server/*": ["src/server/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
