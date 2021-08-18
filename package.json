@@ -55,7 +55,7 @@
     "@graphql-codegen/typescript-operations": "^1.18.2",
     "@graphql-codegen/typescript-react-apollo": "^2.2.7",
     "@types/graphql-fields": "^1.3.3",
-    "@types/lodash": "^4.14.170",
+    "@types/lodash": "^4.14.172",
     "@types/nanoid": "^3.0.0",
     "@types/react": "17.0.18",
     "babel-plugin-optimize-clsx": "^2.6.2",
