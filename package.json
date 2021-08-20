@@ -31,7 +31,7 @@
     "destack": "^0.10.3",
     "graphql": "^15.5.1",
     "graphql-fields": "^2.0.3",
-    "graphql-request": "^3.4.0",
+    "graphql-request": "^3.5.0",
     "graphql-scalars": "^1.10.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
