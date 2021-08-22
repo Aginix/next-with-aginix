@@ -62,7 +62,7 @@
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "cross-env": "^7.0.3",
     "eslint": "7.29.0",
-    "eslint-config-next": "11.0.0",
+    "eslint-config-next": "11.1.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.1",
