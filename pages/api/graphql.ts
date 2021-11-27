@@ -1,11 +1,10 @@
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-micro';
 
-import { AuthChecker, buildSchema } from 'type-graphql';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Context } from '@server/context';
-import { HelloResolver } from '@server/hello/hello.resolver';
+import { Context } from '@server/graphql/context';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
+import { getSchema } from '@server/graphql/schema';
 
 export const config = {
   api: {
@@ -13,16 +12,9 @@ export const config = {
   },
 };
 
-export const customAuthChecker: AuthChecker<Context> = ({ root, args, context, info }, roles) => {
-  return true;
-};
 
 async function createApolloServer() {
-  const schema = await buildSchema({
-    resolvers: [HelloResolver],
-    validate: false,
-    authChecker: customAuthChecker,
-  });
+  const schema = await getSchema();
 
   return new ApolloServer({
     schema,

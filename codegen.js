@@ -9,7 +9,7 @@ module.exports = {
       },
     },
   ],
-  documents: ['./graphql/*.graphql'],
+  documents: ['./components/**/*.graphql'],
   overwrite: true,
   generates: {
     './generated/graphql.tsx': {
@@ -25,19 +25,20 @@ module.exports = {
         },
       },
     },
-    './generated/graphql-request.ts': {
-      plugins: ['typescript-graphql-request'],
-      config: {
-        typesPrefix: 'Operations.',
-        rawRequest: false,
-        documentMode: 'external',
-        importDocumentNodeExternallyFrom: './graphql',
-        namingConvention: {
-          typeNames: 'pascal-case#pascalCase',
-          transformUnderscore: true,
-        },
-      },
-    },
+    // For backend
+    // './generated/graphql-request.ts': {
+    //   plugins: ['typescript-graphql-request'],
+    //   config: {
+    //     typesPrefix: 'Operations.',
+    //     rawRequest: false,
+    //     documentMode: 'external',
+    //     importDocumentNodeExternallyFrom: './graphql',
+    //     namingConvention: {
+    //       typeNames: 'pascal-case#pascalCase',
+    //       transformUnderscore: true,
+    //     },
+    //   },
+    // },
     './generated/graphql.schema.json': {
       plugins: ['introspection'],
     },
