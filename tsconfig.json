@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2018",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,26 +22,27 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "libs": ["src/libs"],
-      "libs/*": ["src/libs/*"],
-      "components": ["src/components"],
-      "components/*": ["src/components/*"],
-      "generated": ["src/generated"],
-      "generated/*": ["src/generated/*"],
-      "public/*": ["public/*"],
-      "public": ["public"],
-      "views/*": ["src/views/*"],
-      "views": ["src/views"],
-      "layouts/*": ["src/layouts/*"],
-      "layouts": ["src/layouts"],
-      "styles": ["src/styles"],
-      "styles/*": ["src/styles/*"],
-      "theme": ["src/theme"],
-      "theme/*": ["src/theme/*"],
-      "server": ["src/server"],
-      "server/*": ["src/server/*"]
-    }
+      "@components/*": [
+        "components/*"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@server/*": [
+        "server/*"
+      ],
+      "@generated/*": [
+        "generated/*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

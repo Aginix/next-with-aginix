@@ -9,10 +9,10 @@ module.exports = {
       },
     },
   ],
-  documents: ['./graph/*.graphql'],
+  documents: ['./components/**/*.graphql'],
   overwrite: true,
   generates: {
-    './src/generated/graphql.tsx': {
+    './generated/graphql.tsx': {
       plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
       config: {
         skipTypename: false,
@@ -25,20 +25,21 @@ module.exports = {
         },
       },
     },
-    './src/generated/graphql-request.ts': {
-      plugins: ['typescript-graphql-request'],
-      config: {
-        typesPrefix: 'Operations.',
-        rawRequest: false,
-        documentMode: 'external',
-        importDocumentNodeExternallyFrom: './graphql',
-        namingConvention: {
-          typeNames: 'pascal-case#pascalCase',
-          transformUnderscore: true,
-        },
-      },
-    },
-    './src/generated/graphql.schema.json': {
+    // For backend
+    // './generated/graphql-request.ts': {
+    //   plugins: ['typescript-graphql-request'],
+    //   config: {
+    //     typesPrefix: 'Operations.',
+    //     rawRequest: false,
+    //     documentMode: 'external',
+    //     importDocumentNodeExternallyFrom: './graphql',
+    //     namingConvention: {
+    //       typeNames: 'pascal-case#pascalCase',
+    //       transformUnderscore: true,
+    //     },
+    //   },
+    // },
+    './generated/graphql.schema.json': {
       plugins: ['introspection'],
     },
   },
