@@ -1,10 +1,10 @@
-import 'styles/globals.css'
+import '../styles/globals.css'
 import Head from 'next/head';
 import App, { AppContext, AppProps } from 'next/app'
 import merge from 'deepmerge'
 import { Fragment } from 'react'
 import { ApolloProvider } from '@apollo/client'
-import { useApollo } from '../src/libs/apollo';
+import { useApollo } from '@lib/apollo';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps)
@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
       <Head>
-        <title>KNN Maps</title>
+        <title>Next with Aginix</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ApolloProvider client={apolloClient}>

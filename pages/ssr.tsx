@@ -1,5 +1,5 @@
-import { GetHelloDocument, useGetHelloQuery } from "../src/generated/graphql"
-import { addApolloState, initializeApollo } from "../src/libs/apollo"
+import { GetHelloDocument, useGetHelloQuery } from "@generated/graphql"
+import { addApolloState, initializeApollo } from "@lib/apollo"
 
 export default function Ssr() {
   const { data } = useGetHelloQuery();
