@@ -71,6 +71,8 @@ Here is what you need to be able to run Cal.
 
 9. Open a browser to [http://localhost:3000](http://localhost:3000).
 
+10. Open a browser to [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) to explore GraphQL.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
