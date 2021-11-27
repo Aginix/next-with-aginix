@@ -1,10 +1,10 @@
-import 'styles/globals.css'
+import '../styles/globals.css'
 import Head from 'next/head';
 import App, { AppContext, AppProps } from 'next/app'
 import merge from 'deepmerge'
 import { Fragment } from 'react'
 import { ApolloProvider } from '@apollo/client'
-import { useApollo } from '../src/libs/apollo';
+import { useApollo } from '@lib/apollo';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps)

@@ -9,9 +9,13 @@
     "url": "git@github.com:{project-org}/{project-name}"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14",
+    "yarn": ">=1.19.0 < 2.0.0"
   },
   "scripts": {
+    "analyze": "ANALYZE=true next build",
+    "analyze:server": "BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "BUNDLE_ANALYZE=browser next build",
     "dev": "next dev",
     "prebuild": "rimraf .next",
     "build": "next build",
@@ -19,10 +23,12 @@
     "lint": "next lint",
     "docs": "npm run start --prefix docusaurus -- --port 4000",
     "generate": "graphql-codegen --config codegen.js",
+    "pre-commit": "lint-staged",
     "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.5.5",
+    "@hookform/resolvers": "^2.8.3",
     "apollo-server-micro": "^3.5.0",
     "class-validator": "^0.13.1",
     "clsx": "^1.1.1",
@@ -43,6 +49,7 @@
     "next-seo": "^4.28.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.20.4",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1"
   },
@@ -57,18 +64,22 @@
     "@graphql-codegen/typescript-operations": "^1.18.2",
     "@graphql-codegen/typescript-react-apollo": "^2.2.7",
     "@types/graphql-fields": "^1.3.3",
+    "@types/jest": "^27.0.3",
     "@types/lodash": "^4.14.172",
     "@types/nanoid": "^3.0.0",
     "@types/react": "17.0.19",
+    "babel-jest": "^27.3.1",
     "babel-plugin-optimize-clsx": "^2.6.2",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "cross-env": "^7.0.3",
     "eslint": "7.29.0",
     "eslint-config-next": "11.1.0",
     "husky": "^7.0.0",
+    "jest": "^27.3.1",
     "lint-staged": "^12.1.2",
     "prettier": "^2.5.0",
     "rimraf": "^3.0.2",
-    "typescript": "4.3.5"
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.5.2"
   }
 }

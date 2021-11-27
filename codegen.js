@@ -9,10 +9,10 @@ module.exports = {
       },
     },
   ],
-  documents: ['./graph/*.graphql'],
+  documents: ['./graphql/*.graphql'],
   overwrite: true,
   generates: {
-    './src/generated/graphql.tsx': {
+    './generated/graphql.tsx': {
       plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
       config: {
         skipTypename: false,
@@ -25,7 +25,7 @@ module.exports = {
         },
       },
     },
-    './src/generated/graphql-request.ts': {
+    './generated/graphql-request.ts': {
       plugins: ['typescript-graphql-request'],
       config: {
         typesPrefix: 'Operations.',
@@ -38,7 +38,7 @@ module.exports = {
         },
       },
     },
-    './src/generated/graphql.schema.json': {
+    './generated/graphql.schema.json': {
       plugins: ['introspection'],
     },
   },

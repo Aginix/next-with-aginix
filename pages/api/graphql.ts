@@ -3,8 +3,8 @@ import { ApolloServer } from 'apollo-server-micro';
 
 import { AuthChecker, buildSchema } from 'type-graphql';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Context } from 'server/context';
-import { HelloResolver } from 'server/hello/hello.resolver';
+import { Context } from '@server/context';
+import { HelloResolver } from '@server/hello/hello.resolver';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 
 export const config = {
