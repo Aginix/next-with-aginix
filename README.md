@@ -17,21 +17,59 @@ You may preview the boilerplate at https://next-with-aginix.vercel.app.
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running, please follow these simple steps.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Here is what you need to be able to run Cal.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Node.js
+- PostgreSQL
+- Yarn (recommended)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
+## Development
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Setup
+
+#### Manual
+
+1. Clone the repo
+
+   ```sh
+   git clone https://github.com/aginix/next-with-aginix.git
+   ```
+
+2. Install packages with yarn
+
+   ```sh
+   yarn install
+   ```
+
+3. Copy `.env.example` to `.env`
+
+4. Configure environment variables in the .env file. Replace `<user>`, `<pass>`, `<db-host>`, `<db-port>` with their applicable values
+
+   ```
+   DATABASE_URL='postgresql://<user>:<pass>@<db-host>:<db-port>'
+   ```
+
+5. Set up the database using the Prisma schema (found in `prisma/schema.prisma`)
+   ```sh
+   npx prisma migrate deploy
+   ```
+6. Run (in development mode)
+   ```sh
+   yarn dev
+   ```
+7. Open [Prisma Studio](https://www.prisma.io/studio) to look at or modify the database content:
+
+   ```
+   npx prisma studio
+   ```
+
+8. Click on the `TodoItem` model to add a new todo record.
+
+9. Open a browser to [http://localhost:3000](http://localhost:3000).
 
 ## Learn More
 

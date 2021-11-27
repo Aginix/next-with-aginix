@@ -17,18 +17,22 @@
     "analyze:server": "BUNDLE_ANALYZE=server next build",
     "analyze:browser": "BUNDLE_ANALYZE=browser next build",
     "dev": "next dev",
+    "db-up": "docker-compose up -d",
+    "db-migrate": "yarn prisma migrate dev",
     "prebuild": "rimraf .next",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "docs": "npm run start --prefix docusaurus -- --port 4000",
     "generate": "graphql-codegen --config codegen.js",
+    "postinstall": "prisma generate",
     "pre-commit": "lint-staged",
     "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.5.5",
     "@hookform/resolvers": "^2.8.3",
+    "@prisma/client": "^3.5.0",
     "apollo-server-micro": "^3.5.0",
     "class-validator": "^0.13.1",
     "clsx": "^1.1.1",
@@ -78,8 +82,10 @@
     "jest": "^27.3.1",
     "lint-staged": "^12.1.2",
     "prettier": "^2.5.0",
+    "prisma": "^3.5.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",
+    "typegraphql-prisma": "^0.18.0",
     "typescript": "^4.5.2"
   }
 }

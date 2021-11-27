@@ -5,6 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Context } from '@server/graphql/context';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { getSchema } from '@server/graphql/schema';
+import prisma from '@lib/prisma'
 
 export const config = {
   api: {
@@ -30,6 +31,7 @@ async function createApolloServer() {
     context: async ({ req }): Promise<Context> => {
       return {
         req: req,
+        prisma: prisma
       };
     },
   });

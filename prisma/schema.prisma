@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator typegraphql {
+  provider           = "typegraphql-prisma"
+  output             = "../generated/type-graphql"
+  emitTranspiledCode = true
+}
+
+model TodoItem {
+  id    Int     @id @default(autoincrement())
+  title String?
+
+  @@map(name: "todo_items")
+}

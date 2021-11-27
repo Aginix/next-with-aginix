@@ -7,9 +7,7 @@ export default function statusHandler(req: NextApiRequest, res: NextApiResponse)
   res.json({
     tag: process.env.TAG_NAME,
     NODE_ENV: process.env.NODE_ENV,
-    GRAPHQL_URL: process.env.GRAPHQL_URL,
-    MINIO_ENDPOINT: process.env.MINIO_ENDPOINT,
-    MINIO_BUCKET: process.env.MINIO_BUCKET,
+    GRAPHQL_URL: process.env.BASE_URL,
     TZ: process.env.TZ,
     datetime: date,
     datetime_local: format(date, 'yyyy-MM-dd HH:mm:ss'),
