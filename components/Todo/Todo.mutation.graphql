@@ -1,5 +1,17 @@
+mutation CreateTodo($data: TodoCreateInput!) {
+  data: createTodo(data: $data) {
+    ...Todo
+  }
+}
+
 mutation UpdateTodo($todoId: Int!, $data: TodoUpdateInput!) {
   data: updateTodo(data: $data, where: { id: $todoId }) {
+    ...Todo
+  }
+}
+
+mutation DeleteTodo($todoId: Int!) {
+  data: deleteTodo(where: { id: $todoId }) {
     ...Todo
   }
 }

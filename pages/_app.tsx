@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import merge from 'deepmerge';
 import App, { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
+import { SnackbarProvider } from 'notistack';
 
 import { useApollo } from '@lib/apollo';
 import createEmotionCache from '@lib/createEmotionCache';
@@ -30,11 +31,13 @@ function MyApp(props: MyAppProps) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
-        </ApolloProvider>
+        <SnackbarProvider maxSnack={3}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <ApolloProvider client={apolloClient}>
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </SnackbarProvider>
       </ThemeProvider>
     </CacheProvider>
   );

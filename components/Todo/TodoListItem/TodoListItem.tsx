@@ -1,12 +1,12 @@
 import { TodoFragment } from '@generated/graphql';
 import { Checkbox, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
-export interface TodoProps {
+export interface TodoListItemProps {
   todo: TodoFragment;
   onToggle?: (todo: TodoFragment, checked: boolean) => void;
 }
 
-function Todo({ todo, onToggle }: TodoProps) {
+function TodoListItem({ todo, onToggle }: TodoListItemProps) {
   const labelId = `checkbox-list-label-${todo.id}`;
 
   return (
@@ -37,4 +37,4 @@ function Todo({ todo, onToggle }: TodoProps) {
   );
 }
 
-export default Todo;
+export default TodoListItem;

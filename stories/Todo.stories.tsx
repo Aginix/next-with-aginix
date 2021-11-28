@@ -1,18 +1,18 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import Todo from '../components/Todo';
+import { TodoListItem } from '../components/todo';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Todo/TodoItem',
-  component: Todo,
+  component: TodoListItem,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof Todo>;
+} as ComponentMeta<typeof TodoListItem>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Todo> = (args) => <Todo {...args} />;
+const Template: ComponentStory<typeof TodoListItem> = (args) => <TodoListItem {...args} />;
 
 export const UncheckedTodo = Template.bind({});
 UncheckedTodo.args = {

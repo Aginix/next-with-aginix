@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { lorem, datatype } from 'faker';
 import React from 'react';
 
-import TodoList from '../components/TodoList';
+import { TodoList } from '../components/todo';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
