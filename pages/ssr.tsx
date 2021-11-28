@@ -1,8 +1,8 @@
-import { GetHelloDocument, useGetHelloQuery } from "@generated/graphql"
+import { GetTodoListDocument, GetTodoListQueryVariables, useGetTodoListQuery } from "@generated/graphql"
 import { addApolloState, initializeApollo } from "@lib/apollo"
 
 export default function Ssr() {
-  const { data } = useGetHelloQuery();
+  const { data } = useGetTodoListQuery();
 
   return <pre>{JSON.stringify(data)}</pre>
 }
@@ -10,8 +10,8 @@ export default function Ssr() {
 export async function getServerSideProps() {
   const apolloClient = initializeApollo()
 
-  await apolloClient.query({
-    query: GetHelloDocument,
+  await apolloClient.query<{}, GetTodoListQueryVariables>({
+    query: GetTodoListDocument,
   })
 
   return addApolloState(apolloClient, {
