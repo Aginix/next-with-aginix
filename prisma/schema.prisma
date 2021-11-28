@@ -16,9 +16,9 @@ generator typegraphql {
   emitTranspiledCode = true
 }
 
-model TodoItem {
+model Todo {
   id    Int     @id @default(autoincrement())
   title String?
 
-  @@map(name: "todo_items")
+  @@map(name: "todo")
 }
