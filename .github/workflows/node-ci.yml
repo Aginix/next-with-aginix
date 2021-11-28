@@ -49,17 +49,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ github.sha }}-node_modules-v${{ matrix.node-version }}
+      - name: Install deps
+        uses: bahmutov/npm-install@v1
 
-      - name: Install dependencies
-        if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: |
-          yarn install --frozen-lockfile
+      - name: Next.js cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs
 
       - name: Lint
         run: |
@@ -91,17 +88,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node_modules
-        id: cache-node_modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ github.sha }}-node_modules-v${{ matrix.node-version }}
+      - name: Install deps
+        uses: bahmutov/npm-install@v1
 
-      - name: Install dependencies
-        if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: |
-          yarn install --frozen-lockfile
+      - name: Next.js cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs
 
       - name: Build
         env:
