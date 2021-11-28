@@ -12,10 +12,8 @@ export const GRAPHQL_URL_PROP_NAME = 'GRAPHQL_URL';
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined = undefined;
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_VERCEL;
-
 function createApolloClient() {
-  const URI = APP_URL + '/api/graphql';
+  const URI = '/api/graphql';
 
   const httpLink = new HttpLink({
     uri: URI,
