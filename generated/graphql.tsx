@@ -28,6 +28,23 @@ export type AggregateTodo = {
   _max?: Maybe<TodoMaxAggregate>;
 };
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: Maybe<Scalars['Boolean']>;
+};
+
+export type BoolFilter = {
+  equals?: Maybe<Scalars['Boolean']>;
+  not?: Maybe<NestedBoolFilter>;
+};
+
+export type BoolWithAggregatesFilter = {
+  equals?: Maybe<Scalars['Boolean']>;
+  not?: Maybe<NestedBoolWithAggregatesFilter>;
+  _count?: Maybe<NestedIntFilter>;
+  _min?: Maybe<NestedBoolFilter>;
+  _max?: Maybe<NestedBoolFilter>;
+};
+
 export type Hello = {
   __typename?: 'Hello';
   text: Scalars['String'];
@@ -109,6 +126,19 @@ export type MutationUpsertTodoArgs = {
   where: TodoWhereUniqueInput;
   create: TodoCreateInput;
   update: TodoUpdateInput;
+};
+
+export type NestedBoolFilter = {
+  equals?: Maybe<Scalars['Boolean']>;
+  not?: Maybe<NestedBoolFilter>;
+};
+
+export type NestedBoolWithAggregatesFilter = {
+  equals?: Maybe<Scalars['Boolean']>;
+  not?: Maybe<NestedBoolWithAggregatesFilter>;
+  _count?: Maybe<NestedIntFilter>;
+  _min?: Maybe<NestedBoolFilter>;
+  _max?: Maybe<NestedBoolFilter>;
 };
 
 export type NestedFloatFilter = {
@@ -296,6 +326,7 @@ export type Todo = {
   __typename?: 'Todo';
   id: Scalars['Int'];
   title?: Maybe<Scalars['String']>;
+  checked: Scalars['Boolean'];
 };
 
 export type TodoAvgAggregate = {
@@ -311,27 +342,32 @@ export type TodoCountAggregate = {
   __typename?: 'TodoCountAggregate';
   id: Scalars['Int'];
   title: Scalars['Int'];
+  checked: Scalars['Int'];
   _all: Scalars['Int'];
 };
 
 export type TodoCountOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
+  checked?: Maybe<SortOrder>;
 };
 
 export type TodoCreateInput = {
   title?: Maybe<Scalars['String']>;
+  checked?: Maybe<Scalars['Boolean']>;
 };
 
 export type TodoCreateManyInput = {
   id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
+  checked?: Maybe<Scalars['Boolean']>;
 };
 
 export type TodoGroupBy = {
   __typename?: 'TodoGroupBy';
   id: Scalars['Int'];
   title?: Maybe<Scalars['String']>;
+  checked: Scalars['Boolean'];
   _count?: Maybe<TodoCountAggregate>;
   _avg?: Maybe<TodoAvgAggregate>;
   _sum?: Maybe<TodoSumAggregate>;
@@ -343,27 +379,32 @@ export type TodoMaxAggregate = {
   __typename?: 'TodoMaxAggregate';
   id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
+  checked?: Maybe<Scalars['Boolean']>;
 };
 
 export type TodoMaxOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
+  checked?: Maybe<SortOrder>;
 };
 
 export type TodoMinAggregate = {
   __typename?: 'TodoMinAggregate';
   id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
+  checked?: Maybe<Scalars['Boolean']>;
 };
 
 export type TodoMinOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
+  checked?: Maybe<SortOrder>;
 };
 
 export type TodoOrderByWithAggregationInput = {
   id?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
+  checked?: Maybe<SortOrder>;
   _count?: Maybe<TodoCountOrderByAggregateInput>;
   _avg?: Maybe<TodoAvgOrderByAggregateInput>;
   _max?: Maybe<TodoMaxOrderByAggregateInput>;
@@ -374,11 +415,13 @@ export type TodoOrderByWithAggregationInput = {
 export type TodoOrderByWithRelationInput = {
   id?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
+  checked?: Maybe<SortOrder>;
 };
 
 export enum TodoScalarFieldEnum {
   Id = 'id',
-  Title = 'title'
+  Title = 'title',
+  Checked = 'checked'
 }
 
 export type TodoScalarWhereWithAggregatesInput = {
@@ -387,6 +430,7 @@ export type TodoScalarWhereWithAggregatesInput = {
   NOT?: Maybe<Array<TodoScalarWhereWithAggregatesInput>>;
   id?: Maybe<IntWithAggregatesFilter>;
   title?: Maybe<StringNullableWithAggregatesFilter>;
+  checked?: Maybe<BoolWithAggregatesFilter>;
 };
 
 export type TodoSumAggregate = {
@@ -400,10 +444,12 @@ export type TodoSumOrderByAggregateInput = {
 
 export type TodoUpdateInput = {
   title?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  checked?: Maybe<BoolFieldUpdateOperationsInput>;
 };
 
 export type TodoUpdateManyMutationInput = {
   title?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  checked?: Maybe<BoolFieldUpdateOperationsInput>;
 };
 
 export type TodoWhereInput = {
@@ -412,6 +458,7 @@ export type TodoWhereInput = {
   NOT?: Maybe<Array<TodoWhereInput>>;
   id?: Maybe<IntFilter>;
   title?: Maybe<StringNullableFilter>;
+  checked?: Maybe<BoolFilter>;
 };
 
 export type TodoWhereUniqueInput = {
@@ -420,7 +467,21 @@ export type TodoWhereUniqueInput = {
 
 export type TodoFragment = (
   { __typename?: 'Todo' }
-  & Pick<Todo, 'id' | 'title'>
+  & Pick<Todo, 'id' | 'title' | 'checked'>
+);
+
+export type UpdateTodoMutationVariables = Exact<{
+  todoId: Scalars['Int'];
+  data: TodoUpdateInput;
+}>;
+
+
+export type UpdateTodoMutation = (
+  { __typename?: 'Mutation' }
+  & { data?: Maybe<(
+    { __typename?: 'Todo' }
+    & TodoFragment
+  )> }
 );
 
 export type GetTodoListQueryVariables = Exact<{ [key: string]: never; }>;
@@ -438,8 +499,43 @@ export const TodoFragmentDoc = gql`
     fragment Todo on Todo {
   id
   title
+  checked
 }
     `;
+export const UpdateTodoDocument = gql`
+    mutation UpdateTodo($todoId: Int!, $data: TodoUpdateInput!) {
+  data: updateTodo(data: $data, where: {id: $todoId}) {
+    ...Todo
+  }
+}
+    ${TodoFragmentDoc}`;
+export type UpdateTodoMutationFn = Apollo.MutationFunction<UpdateTodoMutation, UpdateTodoMutationVariables>;
+
+/**
+ * __useUpdateTodoMutation__
+ *
+ * To run a mutation, you first call `useUpdateTodoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateTodoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateTodoMutation, { data, loading, error }] = useUpdateTodoMutation({
+ *   variables: {
+ *      todoId: // value for 'todoId'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateTodoMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTodoMutation, UpdateTodoMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateTodoMutation, UpdateTodoMutationVariables>(UpdateTodoDocument, options);
+      }
+export type UpdateTodoMutationHookResult = ReturnType<typeof useUpdateTodoMutation>;
+export type UpdateTodoMutationResult = Apollo.MutationResult<UpdateTodoMutation>;
+export type UpdateTodoMutationOptions = Apollo.BaseMutationOptions<UpdateTodoMutation, UpdateTodoMutationVariables>;
 export const GetTodoListDocument = gql`
     query GetTodoList {
   todos {

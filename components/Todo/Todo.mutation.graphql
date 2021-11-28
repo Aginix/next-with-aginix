@@ -1,0 +1,5 @@
+mutation UpdateTodo($todoId: Int!, $data: TodoUpdateInput!) {
+  data: updateTodo(data: $data, where: { id: $todoId }) {
+    ...Todo
+  }
+}

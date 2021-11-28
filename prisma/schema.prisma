@@ -17,8 +17,9 @@ generator typegraphql {
 }
 
 model Todo {
-  id    Int     @id @default(autoincrement())
-  title String?
+  id      Int     @id @default(autoincrement())
+  title   String?
+  checked Boolean @default(false)
 
   @@map(name: "todo")
 }

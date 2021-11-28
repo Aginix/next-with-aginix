@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { format } from 'date-fns';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default function statusHandler(req: NextApiRequest, res: NextApiResponse) {
   const date = new Date();
