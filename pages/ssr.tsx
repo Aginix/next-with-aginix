@@ -1,4 +1,5 @@
 import { GetTodoListDocument, GetTodoListQueryVariables, useGetTodoListQuery } from '@/generated/graphql';
+
 import { addApolloState, initializeApollo } from '@/lib/apollo';
 
 export default function Ssr() {

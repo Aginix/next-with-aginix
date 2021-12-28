@@ -1,12 +1,13 @@
 import { TodoFragment } from '@/generated/graphql';
 import { Checkbox, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { VFC } from 'react';
 
 export interface TodoListItemProps {
   todo: TodoFragment;
   onToggle?: (todo: TodoFragment, checked: boolean) => void;
 }
 
-function TodoListItem({ todo, onToggle }: TodoListItemProps) {
+const TodoListItem: VFC<TodoListItemProps> = ({ todo, onToggle }) => {
   const labelId = `checkbox-list-label-${todo.id}`;
 
   return (
@@ -35,6 +36,6 @@ function TodoListItem({ todo, onToggle }: TodoListItemProps) {
       </ListItemButton>
     </ListItem>
   );
-}
+};
 
 export default TodoListItem;
