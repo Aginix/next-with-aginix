@@ -1,27 +1,54 @@
-import '../styles/globals.css'
+import '@/styles/globals.css';
+import { ApolloProvider } from '@apollo/client';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import merge from 'deepmerge';
+import { SessionProvider } from 'next-auth/react';
+import App, { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
-import App, { AppContext, AppProps } from 'next/app'
-import merge from 'deepmerge'
-import { Fragment } from 'react'
-import { ApolloProvider } from '@apollo/client'
-import { useApollo } from '@lib/apollo';
+import { SnackbarProvider } from 'notistack';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const apolloClient = useApollo(pageProps)
+import { useApollo } from '@/lib/apollo';
+import createEmotionCache from '@/lib/createEmotionCache';
+import theme from '@/lib/theme';
+
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+const MyApp = (props: MyAppProps) => {
+  const {
+    Component,
+    emotionCache = clientSideEmotionCache,
+    pageProps: { session, ...pageProps },
+  } = props;
+  const apolloClient = useApollo(pageProps);
 
   return (
-    <Fragment>
-      <Head>
-        <title>Next with Aginix</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      </Head>
-      <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
-      </ApolloProvider>
-    </Fragment>
-  )
-}
-export default MyApp
+    <SessionProvider session={session}>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <title>Next with Aginix</title>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <SnackbarProvider maxSnack={3}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <ApolloProvider client={apolloClient}>
+              <Component {...pageProps} />
+            </ApolloProvider>
+          </SnackbarProvider>
+        </ThemeProvider>
+      </CacheProvider>
+    </SessionProvider>
+  );
+};
+export default MyApp;
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
@@ -29,6 +56,6 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   return merge(appProps, {
     pageProps: {
       GRAPHQL_URL: process.env.GRAPHQL_URL,
-    }
+    },
   });
-}
+};

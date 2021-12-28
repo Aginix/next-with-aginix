@@ -1,11 +1,10 @@
+const GRAPHQL_URL = process.env.GRAPHQL_URL || 'http://localhost:3000/api/graphql';
+
 module.exports = {
   schema: [
     {
-      [process.env.GRAPHQL_URL]: {
-        headers: {
-          // For Hasura (GraphQL Engine)
-          // 'X-Hasura-Admin-Secret': process.env.AUTH_TOKEN,
-        },
+      [GRAPHQL_URL]: {
+        headers: {},
       },
     },
   ],

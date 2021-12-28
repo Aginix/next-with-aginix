@@ -1,17 +1,16 @@
-import 'reflect-metadata';
-import { ApolloServer } from 'apollo-server-micro';
-
-import { NextApiRequest, NextApiResponse } from 'next';
-import { Context } from '@server/graphql/context';
+import { prisma } from '@/lib/prisma';
+import { Context } from '@/server/graphql/context';
+import { getSchema } from '@/server/graphql/schema';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
-import { getSchema } from '@server/graphql/schema';
+import { ApolloServer } from 'apollo-server-micro';
+import { NextApiRequest, NextApiResponse } from 'next';
+import 'reflect-metadata';
 
 export const config = {
   api: {
     bodyParser: false,
   },
 };
-
 
 async function createApolloServer() {
   const schema = await getSchema();
@@ -22,7 +21,7 @@ async function createApolloServer() {
       ApolloServerPluginLandingPageGraphQLPlayground({
         settings: {
           'tracing.hideTracingResponse': true,
-          'request.credentials': 'include'
+          'request.credentials': 'include',
         },
       }),
     ],
@@ -30,6 +29,7 @@ async function createApolloServer() {
     context: async ({ req }): Promise<Context> => {
       return {
         req: req,
+        prisma: prisma,
       };
     },
   });
@@ -37,6 +37,6 @@ async function createApolloServer() {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const apolloServer = await createApolloServer();
-  await apolloServer.start()
+  await apolloServer.start();
   return apolloServer.createHandler({ path: '/api/graphql' })(req, res);
-};
+}

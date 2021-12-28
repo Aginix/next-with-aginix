@@ -1,0 +1,31 @@
+import { GraphQLResolveInfo } from "graphql";
+import { AggregateTodoArgs } from "./args/AggregateTodoArgs";
+import { CreateManyTodoArgs } from "./args/CreateManyTodoArgs";
+import { CreateTodoArgs } from "./args/CreateTodoArgs";
+import { DeleteManyTodoArgs } from "./args/DeleteManyTodoArgs";
+import { DeleteTodoArgs } from "./args/DeleteTodoArgs";
+import { FindFirstTodoArgs } from "./args/FindFirstTodoArgs";
+import { FindManyTodoArgs } from "./args/FindManyTodoArgs";
+import { FindUniqueTodoArgs } from "./args/FindUniqueTodoArgs";
+import { GroupByTodoArgs } from "./args/GroupByTodoArgs";
+import { UpdateManyTodoArgs } from "./args/UpdateManyTodoArgs";
+import { UpdateTodoArgs } from "./args/UpdateTodoArgs";
+import { UpsertTodoArgs } from "./args/UpsertTodoArgs";
+import { Todo } from "../../../models/Todo";
+import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
+import { AggregateTodo } from "../../outputs/AggregateTodo";
+import { TodoGroupBy } from "../../outputs/TodoGroupBy";
+export declare class TodoCrudResolver {
+    todo(ctx: any, info: GraphQLResolveInfo, args: FindUniqueTodoArgs): Promise<Todo | null>;
+    findFirstTodo(ctx: any, info: GraphQLResolveInfo, args: FindFirstTodoArgs): Promise<Todo | null>;
+    todos(ctx: any, info: GraphQLResolveInfo, args: FindManyTodoArgs): Promise<Todo[]>;
+    createTodo(ctx: any, info: GraphQLResolveInfo, args: CreateTodoArgs): Promise<Todo>;
+    createManyTodo(ctx: any, info: GraphQLResolveInfo, args: CreateManyTodoArgs): Promise<AffectedRowsOutput>;
+    deleteTodo(ctx: any, info: GraphQLResolveInfo, args: DeleteTodoArgs): Promise<Todo | null>;
+    updateTodo(ctx: any, info: GraphQLResolveInfo, args: UpdateTodoArgs): Promise<Todo | null>;
+    deleteManyTodo(ctx: any, info: GraphQLResolveInfo, args: DeleteManyTodoArgs): Promise<AffectedRowsOutput>;
+    updateManyTodo(ctx: any, info: GraphQLResolveInfo, args: UpdateManyTodoArgs): Promise<AffectedRowsOutput>;
+    upsertTodo(ctx: any, info: GraphQLResolveInfo, args: UpsertTodoArgs): Promise<Todo>;
+    aggregateTodo(ctx: any, info: GraphQLResolveInfo, args: AggregateTodoArgs): Promise<AggregateTodo>;
+    groupByTodo(ctx: any, info: GraphQLResolveInfo, args: GroupByTodoArgs): Promise<TodoGroupBy[]>;
+}
