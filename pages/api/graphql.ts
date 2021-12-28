@@ -1,12 +1,10 @@
+import { prisma } from '@/lib/prisma';
+import { Context } from '@/server/graphql/context';
+import { getSchema } from '@/server/graphql/schema';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-micro';
 import { NextApiRequest, NextApiResponse } from 'next';
 import 'reflect-metadata';
-
-import { prisma } from '@lib/prisma';
-
-import { Context } from '@server/graphql/context';
-import { getSchema } from '@server/graphql/schema';
 
 export const config = {
   api: {

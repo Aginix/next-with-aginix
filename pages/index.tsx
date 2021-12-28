@@ -1,8 +1,7 @@
-import { TodoFragment, useGetTodoListQuery, useUpdateTodoMutation } from '@generated/graphql';
+import { TodoList } from '@/components/todo';
+import { TodoFragment, useGetTodoListQuery, useUpdateTodoMutation } from '@/generated/graphql';
 import { Alert, AlertTitle, CircularProgress, Container, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-
-import { TodoList } from '@components/todo';
 
 function IndexPage() {
   const [updateFn, { loading: updating }] = useUpdateTodoMutation();
